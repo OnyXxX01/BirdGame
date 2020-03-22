@@ -5,7 +5,7 @@ public class FallDown : MonoBehaviour
 {
 
     [SerializeField]
-    private float fallSpeed = 3f;
+    private float fallSpeed = 7;
 
     void Update()
     {

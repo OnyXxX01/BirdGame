@@ -9,15 +9,30 @@ public class Player : MonoBehaviour
  
     public GameObject restart;
     public GameObject boom1;
+    public GameObject bac;
     public Text pointsText;
+
+    public GameObject mainCam;
+    public AudioSource mainCamSource;
+  
+    public AudioSource audioS;
+    public AudioClip audioclip;
+    public AudioClip audioboom;
 
     public float points = 0;
     public bool isStarted = false;
 
+    private void Start()
+    {
+        audioS = GetComponent<AudioSource>();
+       
+     
+    }
     void Awake()
     {
         lose = false;
         isStarted = true;
+        
     }
     void Update()
     {
@@ -29,24 +44,36 @@ public class Player : MonoBehaviour
     {
        
     }
-
+    
     void OnTriggerEnter2D(Collider2D obj)
     {
+      
         if (obj.gameObject.tag == "Bomb")
         {
             lose = true;
-            restart.SetActive (true);
+            restart.SetActive(true);
             boom1.SetActive(true);
+            Destroy(obj.gameObject);
             this.GetComponent<SpriteRenderer>().sprite = deathbirdbomb;
-          
+            audioS.PlayOneShot(audioboom);
+            mainCam = GameObject.Find("Main Camera");
+            mainCamSource = mainCam.GetComponent<AudioSource>();
+            mainCamSource.Stop();
+
+            Destroy(GameObject.FindWithTag("Bomb"));
+            Destroy(GameObject.FindWithTag("coin"));
+
+           
         }
 
-        if(obj.gameObject.tag == "coin")
+        if (obj.gameObject.tag == "coin" | obj.gameObject.tag == "coinJele")
         {
             if (isStarted)
             {
                 points++;
-                
+                Destroy(obj.gameObject);
+                audioS.PlayOneShot(audioclip);
+               
             }
 
            

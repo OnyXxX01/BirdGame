@@ -8,6 +8,7 @@ TagManager:
   - DeathBird
   - boom
   - coin
+  - coinJele
   layers:
   - Default
   - TransparentFX

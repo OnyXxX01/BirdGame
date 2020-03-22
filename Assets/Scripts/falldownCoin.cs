@@ -13,7 +13,7 @@ public class falldownCoin : MonoBehaviour
     // Update is called once per frame
    
     [SerializeField]
-    private float fallSpeed = 3f;
+    private float fallSpeed = 5;
 
     void Update()
     {
